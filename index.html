@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Adivina el Número</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <div class="contenedor">
+    <h1>Juego: Adivina el número</h1>
+    <p>He elegido un número entre 1 y 100. Tienes 10 intentos para adivinarlo.</p>
+
+    <div class="zona-juego">
+      <input type="number" id="numeroUsuario" min="1" max="100" placeholder="Escribe un número">
+      <button id="btnIntentar">Intentar</button>
+    </div>
+
+    <p id="mensaje" class="mensaje"></p>
+    <p id="historial" class="historial"></p>
+    <p id="intentosRestantes"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
