@@ -34,14 +34,14 @@ JavaScript para la lógica del juego y la interacción con el DOM.
 
 Estructura del proyecto
 index.html
-estilos.css
+styles.css
 script.js
 README.md
 
 
 index.html: estructura principal de la aplicación.
 
-estilos.css: estilos visuales y diseño.
+styles.css: estilos visuales y diseño.
 
 script.js: lógica del juego y manejo de eventos.
 
