@@ -1,71 +1,72 @@
 let numeroSecreto;
-let intentosDisponibles;
-let listaIntentos;
-let juegoTerminado = false;
+let intentosRestantes;
+let numerosIngresados;
+let juegoFinalizado = false;
 
-const inputNumero = document.getElementById("numeroUsuario");
-const botonIntentar = document.getElementById("btnIntentar");
+const input = document.getElementById("numeroUsuario");
+const boton = document.getElementById("btnIntentar");
 const mensaje = document.getElementById("mensaje");
 const historial = document.getElementById("historial");
-const intentosRestantes = document.getElementById("intentosRestantes");
+const restantes = document.getElementById("intentosRestantes");
 
 function iniciarJuego() {
   numeroSecreto = Math.floor(Math.random() * 100) + 1;
-  intentosDisponibles = 10;
-  listaIntentos = [];
-  juegoTerminado = false;
+  intentosRestantes = 10;
+  numerosIngresados = [];
+  juegoFinalizado = false;
 
   mensaje.textContent = "";
   historial.textContent = "";
-  intentosRestantes.textContent = "Intentos restantes: " + intentosDisponibles;
+  restantes.textContent = "Intentos restantes: " + intentosRestantes;
 
-  inputNumero.disabled = false;
-  botonIntentar.disabled = false;
-  inputNumero.value = "";
-  inputNumero.focus();
+  input.disabled = false;
+  boton.disabled = false;
+  input.value = "";
+  input.focus();
 }
 
-function evaluarIntento() {
-  if (juegoTerminado) return;
+function verificarNumero() {
+  if (juegoFinalizado) return;
 
-  const numeroIngresado = Number(inputNumero.value);
+  const numero = Number(input.value);
 
-  if (isNaN(numeroIngresado) || numeroIngresado < 1 || numeroIngresado > 100) {
+  if (isNaN(numero) || numero < 1 || numero > 100) {
     mensaje.textContent = "Ingresa un número válido entre 1 y 100.";
     return;
   }
 
-  listaIntentos.push(numeroIngresado);
-  intentosDisponibles--;
+  numerosIngresados.push(numero);
+  intentosRestantes--;
 
-  historial.textContent = "Números usados: " + listaIntentos.join(", ");
-  intentosRestantes.textContent = "Intentos restantes: " + intentosDisponibles;
+  historial.textContent = "Números probados: " + numerosIngresados.join(", ");
+  restantes.textContent = "Intentos restantes: " + intentosRestantes;
 
-  if (numeroIngresado === numeroSecreto) {
-    mensaje.textContent = "¡Correcto! Adivinaste el número.";
+  if (numero === numeroSecreto) {
+    mensaje.textContent = "¡Correcto! Adivinaste el número 🎉";
     finalizarJuego();
-  } else if (intentosDisponibles === 0) {
-    mensaje.textContent = "Se terminaron los intentos. El número era " + numeroSecreto + ".";
+  } else if (intentosRestantes === 0) {
+    mensaje.textContent = "Se acabaron los intentos. El número era " + numeroSecreto + ".";
     finalizarJuego();
-  } else if (numeroIngresado < numeroSecreto) {
-    mensaje.textContent = "El número secreto es mayor.";
+  } else if (numero < numeroSecreto) {
+    mensaje.textContent = "El número es mayor.";
   } else {
-    mensaje.textContent = "El número secreto es menor.";
+    mensaje.textContent = "El número es menor.";
   }
 
-  inputNumero.value = "";
-  inputNumero.focus();
+  input.value = "";
+  input.focus();
 }
 
 function finalizarJuego() {
-  juegoTerminado = true;
-  inputNumero.disabled = true;
-  botonIntentar.disabled = true;
+  juegoFinalizado = true;
+  input.disabled = true;
+  boton.disabled = true;
 
   const botonReiniciar = document.createElement("button");
-  botonReiniciar.textContent = "Jugar otra vez";
-  botonReiniciar.id = "btnReiniciar";
-  document.querySelector(".contenedor").appendChild(botonReiniciar);
+  botonReiniciar.textContent = "Jugar de nuevo";
+  botonReiniciar.style.marginTop = "15px";
+
+  document.querySelector(".card").appendChild(botonReiniciar);
 
   botonReiniciar.addEventListener("click", function () {
     botonReiniciar.remove();
@@ -73,6 +74,6 @@ function finalizarJuego() {
   });
 }
 
-botonIntentar.addEventListener("click", evaluarIntento);
+boton.addEventListener("click", verificarNumero);
 
 iniciarJuego();

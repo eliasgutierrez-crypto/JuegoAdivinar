@@ -3,22 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Adivina el Número</title>
-  <link rel="stylesheet" href="estilos.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="contenedor">
-    <h1>Juego: Adivina el número</h1>
-    <p>He elegido un número entre 1 y 100. Tienes 10 intentos para adivinarlo.</p>
+  <div class="card">
+    <h1>Adivina el número</h1>
+    <p class="descripcion">
+      Estoy pensando en un número del 1 al 100. 
+      Tienes 10 intentos para descubrirlo.
+    </p>
 
-    <div class="zona-juego">
-      <input type="number" id="numeroUsuario" min="1" max="100" placeholder="Escribe un número">
+    <div class="input-group">
+      <input type="number" id="numeroUsuario" min="1" max="100" placeholder="Escribe tu número">
       <button id="btnIntentar">Intentar</button>
     </div>
 
-    <p id="mensaje" class="mensaje"></p>
-    <p id="historial" class="historial"></p>
-    <p id="intentosRestantes"></p>
+    <div class="info">
+      <p id="mensaje" class="mensaje"></p>
+      <p id="historial" class="historial"></p>
+      <p id="intentosRestantes" class="restantes"></p>
+    </div>
   </div>
 
   <script src="script.js"></script>
